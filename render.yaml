@@ -1,0 +1,22 @@
+services:
+  open-webui:
+    type: web
+    name: open-webui
+    env: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: OLLAMA_BASE_URL
+        value: http://ollama:11434
+      - key: WEBUI_SECRET_KEY
+        generateValue: true
+    disk:
+      name: data
+      mountPath: /app/backend/data
+      sizeGB: 5
+    healthCheckPath: /
+    buildCommand: ''
+    startCommand: ''
+    ports:
+      - 8080
